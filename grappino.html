@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+<head>
+  {MobileAppHeaders}
+  <meta charset="utf-8">
+  <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+  {block:Description}
+  <meta name="description" content="{MetaDescription}">
+  {/block:Description}
+
+  {block:Hidden}
+  <meta name="if:Endless scrolling" content="1">
+  <meta name="if:Visible navigation" content="1"/>
+
+  <meta name="image:LogoImage" content=""/>
+
+  <meta name="color:Background" content="#fff" />
+  <meta name="color:Body" content="#686A77" />
+  <meta name="color:VisitedLinks" content="#9B9DAA" />
+  <meta name="color:BlockquoteText" content="#CED0DD" />
+
+
+  <meta name="font:Font" content="Lato, Helvetica, Arial, sans-serif"/>
+
+  <meta name="text:Disqus shortname" content="">
+  <meta name="text:Google analytics ID" content="">
+  {/block:Hidden}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+  <link rel="stylesheet" href="http://static.tumblr.com/vr9xgox/PuGmmhqcs/normalize.css">
+  <link rel="stylesheet" href="http://static.tumblr.com/vr9xgox/qE8n2yg06/optica-icons.css">
+
+  <!-- Get Lato Regular, Bold, both with italics (Google font) -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- HTML5 Shiv -->
+  <!--[if lt IE 9]>
+      <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
+  <![endif]-->
+
+  <style>
+
+    /* Generic */
+    body {
+      background-color: {color:Background};
+      font: 100%/22px {font:Font};
+      color: {color:Body};
+    }
+
+    .banner, main, footer {
+      width: 90%;
+      max-width: 2000px;
+      margin: 0 auto;
+    }
+
+    .caption, .reblog-header {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 100%;
+    }
+
+    p {
+      margin: 22px 0;
+    }
+
+    a {
+      color: {color:Body};
+    }
+
+    a:visited {
+      color: {color:VisitedLinks};
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    blockquote {
+      margin: 0;
+      border-left: 3px solid {color:BlockquoteText};
+      overflow: hidden;
+    }
+
+    blockquote > p {
+      padding: 22px 22px;
+      margin-top: 0;
+    }
+
+    blockquote > p:last-child {
+      padding-bottom: 0;
+    }
+
+    blockquote > blockquote {
+      margin-left: 20px;
+    }
+
+    /* Banner */
+    .banner {
+      text-align: center;
+      padding: 88px 0;
+    }
+
+    .banner a {
+      text-decoration: none;
+    }
+
+    .banner a:visited {
+      color: {color:Body};
+    }
+
+    .tumblr-title {
+      margin: 0;
+      font-size: 24px;
+      line-height: 44px;
+    }
+
+    /** Navigation **/
+    .nav-menu {
+      margin-top: 22px;
+    }
+
+    #navigation-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #navigation-list > li {
+      display: inline-block;
+      margin-left: 50px;
+    }
+
+    #navigation-list > li:first-child {
+      margin-left: 0;
+    }
+
+    /* Post */
+    #posts > article {
+      margin-bottom: 88px;
+    }
+
+    /* Reblogged */
+    .reblog-link {
+      text-decoration: none;
+    }
+
+    .icon-reblog {
+      margin-right: 5px;
+    }
+
+    /* Tags & source */
+    .attribution-tags-list {
+      list-style: none;
+    }
+
+    .attribution-tags-list > li {
+      display: inline-block;
+    }
+
+    /* Custom CSS */
+    {CustomCSS}
+  </style>
+</head>
+
+<body data-urlencoded-name="{URLEncodedName}" class="{select:Layout}{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:HideHeaderImage} no-header-image{/block:HideHeaderImage}{block:NoStretchHeaderImage} contain-header-image{/block:NoStretchHeaderImage}">
+
+<header class="banner" role="banner">
+  <!-- Title and description -->
+
+  {block:IfNotLogoImageImage}
+  <h1 class="tumblr-title">
+    <a href="/" title="{lang:Home}">{Title}</a>
+  </h1>
+  {/block:IfNotLogoImageImage}
+
+  {block:IfLogoImageImage}
+  <h1 class="tumblr-logo">
+    <a href="/" title="{lang:Home}"><img src="{image:LogoImage}" alt="{Title}" /></a>
+  </h1>
+  {/block:IfLogoImageImage}
+
+  {block:ShowDescription}
+  <div class="description">
+      {Description}
+  </div>
+  {/block:ShowDescription}
+
+  <!-- Navigation -->
+  {block:IfVisibleNavigation}
+  <nav role="navigation" class="nav-menu">
+    <ul id="navigation-list">
+      <li class="archive">
+        <a href="/archive" title="{lang:Archive}">{lang:Archive}</a>
+      </li>
+
+      {block:AskEnabled}
+      <li class="ask">
+        <a href="/ask" title="{AskLabel}">{AskLabel}</a>
+      </li>
+      {/block:AskEnabled}
+
+      {block:HasPages}
+        {block:Pages}
+        <li class="pages">
+            <a href="{URL}" class="page" title="{Label}">{Label}</a>
+        </li>
+        {/block:Pages}
+      {/block:HasPages}
+
+      {block:SubmissionsEnabled}
+      <li class="submit">
+          <a href="/submit" title="{SubmitLabel}">{SubmitLabel}</a>
+      </li>
+      {/block:SubmissionsEnabled}
+    </ul>
+  </nav>
+  {/block:IfVisibleNavigation}
+</header>
+
+<main role="main">
+  <section id="posts">
+    {block:Posts}
+    <article class="{block:Text}text {/block:Text}{block:Photoset}photoset {/block:Photoset}{block:Photo}photo {/block:Photo}{block:RebloggedFrom}reblogged {/block:RebloggedFrom}{block:Quote}quote {/block:Quote}{block:Link}link {/block:Link}{block:Chat}chat {/block:Chat}{block:Audio}audio {/block:Audio}{block:Video}video {/block:Video}{block:Answer}answer {/block:Answer}{block:Date}not-page post-{PostID}{/block:Date} {block:PermalinkPage} active exposed{/block:PermalinkPage}">
+
+      <!-- {block:RebloggedFrom}
+      <header class="reblog-header">
+        <a class="reblog-link" href="{ReblogParentURL}" title="{lang:PostTypeNoun reblogged from ReblogParentName}"><i class="icon-reblog"></i>{ReblogParentName}</a>
+      </header>
+      {/block:RebloggedFrom} -->
+
+      {block:Text}
+        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+        {block:Body}
+          <div class="body-text">
+            {Body}
+          </div>
+        {/block:Body}
+      {/block:Text}
+
+      {block:Photo}
+      <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
+        <div class="photo-wrapper">
+          {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
+        </div>
+
+        {block:Caption}
+        <figcaption class="caption">
+          {Caption}
+        </figcaption>
+        {/block:Caption}
+      </figure>
+      {/block:Photo}
+
+      {block:Photoset}
+<figure class="photoset {block:Caption}with-caption{/block:Caption}">
+{Photoset}
+{block:Caption}
+<figcaption class="caption">
+{Caption}
+</figcaption>
+{/block:Caption}
+</figure>
+{/block:Photoset}
+
+      {block:Quote}
+      …
+      {/block:Quote}
+
+      {block:Link}
+      …
+      {/block:Link}
+
+      {block:Chat}
+      …
+      {/block:Chat}
+
+      {block:Audio}
+      …
+      {/block:Audio}
+
+      {block:Video}
+      …
+      {/block:Video}
+
+      {block:Answer}
+      …
+      {/block:Answer}
+
+      {block:NotReblog}
+        {block:HasTags}
+        <section class="attribution-tags">
+          <ul class="attribution-tags-list">
+            {block:ContentSource}
+            <li class="source">
+              <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+            </li>
+            {/block:ContentSource}
+            {block:Tags}
+            <li class="tag">
+              <a href="{TagURL}" class="tag">{Tag}</a>
+            </li>
+            {/block:Tags}
+          </ul>
+        </section>
+        {/block:HasTags}
+      {/block:NotReblog}
+
+
+    </article>
+
+    {/block:Posts}
+  </section>
+</main>
+
