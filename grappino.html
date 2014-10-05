@@ -56,7 +56,7 @@
       color: {color:Body};
     }
 
-    .banner, main, footer {
+    .banner, main, footer, figure.photoset {
       width: 90%;
       max-width: 2000px;
       margin: 0 auto;
@@ -151,6 +151,11 @@
     /* Post */
     #posts > article {
       margin-bottom: 88px;
+    }
+
+    /* Photoset */
+    iframe.photoset {
+      margin: 0 auto;
     }
 
     /* Reblogged */
@@ -252,7 +257,7 @@
       {/block:Text}
 
       {block:Photo}
-      <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
+      <figure class="{block:HighRes}high-res{/block:HighRes}" data-photo-width="{PhotoWidth-HighRes}">
         <div class="photo-wrapper">
           {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
         </div>
@@ -266,15 +271,14 @@
       {/block:Photo}
 
       {block:Photoset}
-<figure class="photoset {block:Caption}with-caption{/block:Caption}">
-{Photoset}
-{block:Caption}
-<figcaption class="caption">
-{Caption}
-</figcaption>
-{/block:Caption}
-</figure>
-{/block:Photoset}
+      <div class="photoset">
+        {block:Photos}
+          <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+          {/block:Photos}
+        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+      </div>
+      {/block:Photoset}
 
       {block:Quote}
       …
