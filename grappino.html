@@ -56,7 +56,7 @@
       color: {color:Body};
     }
 
-    .banner, main, footer, figure.photoset {
+    .banner, main, footer, .photoset {
       width: 90%;
       max-width: 2000px;
       margin: 0 auto;
@@ -154,8 +154,12 @@
     }
 
     /* Photoset */
-    iframe.photoset {
-      margin: 0 auto;
+    .photoset-img {
+      margin: 22px auto 0;
+    }
+
+    .photoset-img:first-child {
+      margin-top: 0;
     }
 
     /* Reblogged */
@@ -271,13 +275,13 @@
       {/block:Photo}
 
       {block:Photoset}
-      <div class="photoset">
+      <figure class="photoset">
         {block:Photos}
-          <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-          {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+          <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
           {/block:Photos}
-        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-      </div>
+        {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+      </figure>
       {/block:Photoset}
 
       {block:Quote}
