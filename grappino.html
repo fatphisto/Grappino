@@ -20,6 +20,8 @@
 
   <!-- Visible metadata column toggles the visibility of the third column in posts -->
   <meta name="if:Visible metadata column" content="1"/>
+  <meta name="if:Visible photo exif" content="1"/>
+  <meta name="if:Visible post tags" content="1"/>
   <meta name="if:Visible post author" content="0"/>
   <meta name="if:Visible post date" content="1"/>
   <meta name="if:Visible post notes" content="1"/>
@@ -74,23 +76,17 @@
 
     /* Grid */
 
-    .grid-m, .grid-s {
-      float: left;
-    }
-
     .grid-m {
+      float: left;
       width: 46.4%;
       margin-left: 2.4%;
       margin-right: 2.4%;
     }
 
     .grid-s {
+      float: right;
       width: 22%;
       margin-right: 2.4%;
-    }
-
-    .grid-m.nodesc, .grid-m.nonav {
-      width: 72.2%;
     }
 
     /* Generic */
@@ -193,8 +189,8 @@
       margin-top: 24px;
     }
 
-    /** Tags & metadata **/
-    .attribution-tags-list {
+    /** Exif & tags & metadata **/
+    .exif-list, .attribution-tags-list {
       list-style: none;
       margin: 24px 0 0;
       padding: 0;
@@ -230,12 +226,6 @@
   </h1>
   {/block:IfLogoImageImage}
 
-  {block:ShowDescription}
-  <div class="description grid-s">
-      {Description}
-  </div>
-  {/block:ShowDescription}
-
   <!-- Navigation -->
   {block:IfVisibleNavigation}
   <nav role="navigation" class="nav-menu grid-s">
@@ -266,6 +256,13 @@
     </ul>
   </nav>
   {/block:IfVisibleNavigation}
+
+  {block:ShowDescription}
+  <div class="description grid-s">
+      {Description}
+  </div>
+  {/block:ShowDescription}
+
 </header>
 
 <main role="main">
@@ -336,25 +333,6 @@
       …
       {/block:Answer}
 
-      {block:NotReblog}
-        {block:HasTags}
-        <section class="attribution-tags grid-s">
-          <ul class="attribution-tags-list">
-            {block:ContentSource}
-            <li class="source">
-              <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
-            </li>
-            {/block:ContentSource}
-            {block:Tags}
-            <li class="tag-item">
-              <a href="{TagURL}" class="tag">{Tag}</a>
-            </li>
-            {/block:Tags}
-          </ul>
-        </section>
-        {/block:HasTags}
-      {/block:NotReblog}
-
       {block:IfVisibleMetadataColumn}
         {block:Date}
         <section class="metadata grid-s">
@@ -380,8 +358,50 @@
         {/block:Date}
       {/block:IfVisibleMetadataColumn}
 
-    </article>
+      <section class="attribution-tags exif grid-s">
+        {block:IfVisiblePhotoExif}
+          {block:Exif}
+          <ul class="exif-list">
+            {block:Camera}
+              <li class="exif-camera">{Camera}</li>
+            {/block:Camera}
 
+            {block:Aperture}
+              <li class="exif-aperture">{Aperture}</li>
+            {/block:Aperture}
+
+            {block:Exposure}
+              <li class="exif-exposure">{Exposure}</li>
+            {/block:Exposure}
+
+            {block:FocalLength}
+              <li class="exif-focal-length">{FocalLength}</li>
+            {/block:FocalLength}
+          </ul>
+          {/block:Exif}
+        {/block:IfVisiblePhotoExif}
+
+        {block:IfVisiblePostTags}
+          {block:NotReblog}
+            {block:HasTags}
+              <ul class="attribution-tags-list">
+                {block:ContentSource}
+                <li class="source">
+                  <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+                </li>
+                {/block:ContentSource}
+                {block:Tags}
+                <li class="tag-item">
+                  <a href="{TagURL}" class="tag">{Tag}</a>
+                </li>
+                {/block:Tags}
+              </ul>
+            {/block:HasTags}
+          {/block:NotReblog}
+        {block:IfVisiblePostTags}
+      </section>
+
+    </article>
     {/block:Posts}
   </section>
 </main>
