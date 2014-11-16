@@ -121,12 +121,6 @@
       color: {color:VisitedLinks};
     }
 
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
     /* TODO blockquotes */
 
     blockquote {
@@ -180,8 +174,12 @@
     }
 
     /* Posts */
-    #posts > article {
+    article {
       margin-bottom: 120px;
+    }
+
+    article.active {
+      margin-bottom: 50px;
     }
 
     /** Photos **/
@@ -189,8 +187,14 @@
       margin-top: 24px;
     }
 
+    .photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     /** Exif & tags & metadata **/
-    .exif-list, .attribution-tags-list {
+    .exif-list, .attribution-tags-list, .notes {
       list-style: none;
       margin: 24px 0 0;
       padding: 0;
@@ -202,6 +206,50 @@
 
     .metadata {
       margin-top: 24px;
+    }
+
+    /* Permalink pages */
+    /** Notes **/
+
+    .note {
+      padding: 24px 0;
+      border-top: 1px solid;
+      box-sizing: border-box;
+    }
+
+    .note:first-child {
+      border-top-width: 5px;
+    }
+
+    .note > .avatar_frame {
+      margin-right: 12px;
+    }
+
+    .note > blockquote {
+      margin-left: 28px;
+      padding-left: 12px;
+    }
+
+    .more_notes_link_container {
+      padding: 0;
+    }
+
+    .more_notes_link, .notes_loading {
+      -webkit-transition: background .2s ease-out, color .2s ease-out;
+      -moz-transition:    background .2s ease-out, color .2s ease-out;
+      -ms-transition:     background .2s ease-out, color .2s ease-out;
+      -o-transition:      background .2s ease-out, color .2s ease-out;
+      transition:         background .2s ease-out, color .2s ease-out;
+      background-color: transparent;
+      display: block;
+      padding: 24px 0;
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .more_notes_link:hover {
+      background-color: #fff;
+      color: #000;
     }
 
     /* Custom CSS */
@@ -337,20 +385,20 @@
         {block:Date}
         <section class="metadata grid-s">
           {block:IfVisiblePostAuthor}
-            <div class="author">{lang:By PostAuthorName 2}</div>
+            <div class="meta-author">{lang:By PostAuthorName 2}</div>
           {/block:IfVisiblePostAuthor}
 
           {block:IfVisiblePostDate}
-            <div class="date"><a href="{Permalink}" title="Permalink">{Year}&nbsp;/&nbsp;{MonthNumberWithZero}&nbsp;/&nbsp;{DayOfMonthWithZero}</a></div>
+            <div class="meta-date"><a href="{Permalink}" title="Permalink">{Year}&nbsp;/&nbsp;{MonthNumberWithZero}&nbsp;/&nbsp;{DayOfMonthWithZero}</a></div>
           {/block:IfVisiblePostDate}
 
           {block:IfVisiblePostNotes}
-            <div class="note-count">{NoteCountWithLabel}</div>
+            <div class="meta-note-count">{NoteCountWithLabel}</div>
           {/block:IfVisiblePostNotes}
 
           {block:IfVisibleSource}
             {block:ContentSource}
-              <div class="source"><a href="{SourceURL}">{lang:Source}</a></div>
+              <div class="meta-source"><a href="{SourceURL}">{lang:Source}</a></div>
             {/block:ContentSource}
           {/block:IfVisibleSource}
 
@@ -403,5 +451,12 @@
 
     </article>
     {/block:Posts}
-  </section>
+
+    {block:PermalinkPage}
+      {block:PostNotes}
+        <section id="notes" class="notes-wrapper grid-m cf">
+          {PostNotes-16}
+        </section>
+      {/block:PostNotes}
+    {/block:PermalinkPage}
 </main>
