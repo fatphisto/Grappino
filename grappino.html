@@ -138,6 +138,14 @@
       line-height: 48px;
     }
 
+    .tumblr-title, .tumblr-logo, .description, .nav-menu {
+      float: left;
+    }
+
+    .description, .nav-menu {
+      width: 23%;
+      margin-right: 1.6%;
+    }
     .tumblr-title, .tumblr-logo {
       width: 47.6%;
       margin-left: 1.6%;
@@ -210,6 +218,7 @@
 <header class="banner" role="banner">
   <!-- Title and description -->
 
+<!-- TODO: add clearfix -->
   {block:IfNotLogoImageImage}
   <h1 class="tumblr-title{block:IfNotShowDescription} nodesc{/block:IfNotShowDescription}{block:IfNotVisibleNavigation} nonav{/block:IfNotVisibleNavigation}">
     <a href="/" title="{lang:Home}">{Title}</a>
@@ -353,4 +362,3 @@
     {/block:Posts}
   </section>
 </main>
-
