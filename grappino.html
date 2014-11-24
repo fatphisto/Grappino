@@ -198,7 +198,28 @@
       height: auto;
     }
 
-    /** Photos **/
+    /** Photosets **/
+    .photoset img {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    .photoset.count-2 > .photoset-img-wrapper, .photoset.count-4 > .photoset-img-wrapper, .photoset.count-8 > .photoset-img-wrapper, div.photoset.count-10 > .photoset-img-wrapper {
+      float: left;
+      width: 48.8%;
+      padding-bottom: 48.8%;
+      margin-left: 2.4%;
+      margin-bottom: 2.4%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photoset.count-2 > .photoset-img-wrapper:nth-child(odd), .photoset.count-4 > .photoset-img-wrapper:nth-child(odd), .photoset.count-8 > .photoset-img-wrapper:nth-child(odd), div.photoset.count-10 > .photoset-img-wrapper:nth-child(odd) {
+      margin-left: 0;
+    }
+
+    /** Text **/
     .text-post-title {
       margin-top: 0;
       margin-bottom: 24px;
@@ -374,11 +395,12 @@
       {/block:Photo}
 
       {block:Photoset}
-      <div class="photoset">
+      <div class="photoset count-{PhotoCount} {PhotosetLayout}">
         {block:Photos}
-          <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-          {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-          {/block:Photos}
+          <div class="photoset-img-wrapper">
+            <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          </div>
+        {/block:Photos}
         {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
       </div>
       {/block:Photoset}
