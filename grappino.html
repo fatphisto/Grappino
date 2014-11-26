@@ -74,21 +74,6 @@
         *zoom: 1;
     }
 
-    /* Grid */
-
-    .grid-m {
-      float: left;
-      width: 46.4%;
-      margin-left: 2.4%;
-      margin-right: 2.4%;
-    }
-
-    .grid-s {
-      float: right;
-      width: 22%;
-      margin-right: 2.4%;
-    }
-
     /* Generic */
     body {
       background-color: {color:Background};
@@ -198,27 +183,6 @@
       height: auto;
     }
 
-    /** Photosets **/
-    .photoset img {
-      position: absolute;
-      min-width: 100%;
-      min-height: 100%;
-    }
-
-    .photoset.count-2 > .photoset-img-wrapper, .photoset.count-4 > .photoset-img-wrapper, .photoset.count-8 > .photoset-img-wrapper, div.photoset.count-10 > .photoset-img-wrapper {
-      float: left;
-      width: 48.8%;
-      padding-bottom: 48.8%;
-      margin-left: 2.4%;
-      margin-bottom: 2.4%;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .photoset.count-2 > .photoset-img-wrapper:nth-child(odd), .photoset.count-4 > .photoset-img-wrapper:nth-child(odd), .photoset.count-8 > .photoset-img-wrapper:nth-child(odd), div.photoset.count-10 > .photoset-img-wrapper:nth-child(odd) {
-      margin-left: 0;
-    }
-
     /** Text **/
     .text-post-title {
       margin-top: 0;
@@ -297,6 +261,24 @@
     .more_notes_link:hover {
       background-color: #fff;
       color: #000;
+    }
+
+    /* Responsive */
+    @media only screen and (min-width : 768px) {
+      /* Grid */
+
+      .grid-m {
+        float: left;
+        width: 46.4%;
+        margin-left: 2.4%;
+        margin-right: 2.4%;
+      }
+
+      .grid-s {
+        float: right;
+        width: 22%;
+        margin-right: 2.4%;
+      }
     }
 
     /* Custom CSS */
