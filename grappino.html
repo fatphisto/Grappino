@@ -74,6 +74,12 @@
         *zoom: 1;
     }
 
+    /* Grid */
+    .grid-m, .grid-s {
+      margin-left: 4%;
+      margin-right: 4%;
+    }
+
     /* Generic */
     body {
       background-color: {color:Background};
@@ -275,9 +281,13 @@
       }
 
       .grid-s {
-        float: right;
+        float: left;
         width: 22%;
         margin-right: 2.4%;
+        margin-left: 0;
+      }
+      .grid-s:last-child {
+        float: right;
       }
     }
 
@@ -302,6 +312,12 @@
     <a href="/" title="{lang:Home}"><img src="{image:LogoImage}" alt="{Title}" /></a>
   </h1>
   {/block:IfLogoImageImage}
+
+  {block:ShowDescription}
+  <div class="description grid-s">
+      {Description}
+  </div>
+  {/block:ShowDescription}
 
   <!-- Navigation -->
   {block:IfVisibleNavigation}
@@ -333,12 +349,6 @@
     </ul>
   </nav>
   {/block:IfVisibleNavigation}
-
-  {block:ShowDescription}
-  <div class="description grid-s">
-      {Description}
-  </div>
-  {/block:ShowDescription}
 
 </header>
 
@@ -379,11 +389,11 @@
       {block:Photoset}
       <div class="photoset count-{PhotoCount} {PhotosetLayout}">
         {block:Photos}
-          <div class="photoset-img-wrapper">
-            <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-          </div>
+        <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
         {/block:Photos}
-        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+        {block:Caption}
+        <div class="caption">{Caption}</div>
+        {/block:Caption}
       </div>
       {/block:Photoset}
 
@@ -411,6 +421,49 @@
       …
       {/block:Answer}
 
+      <section class="attribution-tags exif grid-s">
+        {block:IfVisiblePhotoExif}
+        {block:Exif}
+        <ul class="exif-list">
+          {block:Camera}
+          <li class="exif-camera">{Camera}</li>
+          {/block:Camera}
+
+          {block:Aperture}
+          <li class="exif-aperture">{Aperture}</li>
+          {/block:Aperture}
+
+          {block:Exposure}
+          <li class="exif-exposure">{Exposure}</li>
+          {/block:Exposure}
+
+          {block:FocalLength}
+          <li class="exif-focal-length">{FocalLength}</li>
+          {/block:FocalLength}
+        </ul>
+        {/block:Exif}
+        {/block:IfVisiblePhotoExif}
+
+        {block:IfVisiblePostTags}
+        {block:NotReblog}
+        {block:HasTags}
+        <ul class="attribution-tags-list">
+          {block:ContentSource}
+          <li class="source">
+            <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+          </li>
+          {/block:ContentSource}
+          {block:Tags}
+          <li class="tag-item">
+            <a href="{TagURL}" class="tag">{Tag}</a>
+          </li>
+          {/block:Tags}
+        </ul>
+        {/block:HasTags}
+        {/block:NotReblog}
+        {block:IfVisiblePostTags}
+      </section>
+
       {block:IfVisibleMetadataColumn}
         {block:Date}
         <section class="metadata grid-s">
@@ -435,49 +488,6 @@
         </section>
         {/block:Date}
       {/block:IfVisibleMetadataColumn}
-
-      <section class="attribution-tags exif grid-s">
-        {block:IfVisiblePhotoExif}
-          {block:Exif}
-          <ul class="exif-list">
-            {block:Camera}
-              <li class="exif-camera">{Camera}</li>
-            {/block:Camera}
-
-            {block:Aperture}
-              <li class="exif-aperture">{Aperture}</li>
-            {/block:Aperture}
-
-            {block:Exposure}
-              <li class="exif-exposure">{Exposure}</li>
-            {/block:Exposure}
-
-            {block:FocalLength}
-              <li class="exif-focal-length">{FocalLength}</li>
-            {/block:FocalLength}
-          </ul>
-          {/block:Exif}
-        {/block:IfVisiblePhotoExif}
-
-        {block:IfVisiblePostTags}
-          {block:NotReblog}
-            {block:HasTags}
-              <ul class="attribution-tags-list">
-                {block:ContentSource}
-                <li class="source">
-                  <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
-                </li>
-                {/block:ContentSource}
-                {block:Tags}
-                <li class="tag-item">
-                  <a href="{TagURL}" class="tag">{Tag}</a>
-                </li>
-                {/block:Tags}
-              </ul>
-            {/block:HasTags}
-          {/block:NotReblog}
-        {block:IfVisiblePostTags}
-      </section>
 
     </article>
     {/block:Posts}
