@@ -179,11 +179,22 @@
     }
 
     /** Photos **/
-    .photo > .caption {
+    .photo-wrapper {
+      overflow: hidden;
+    }
+
+    .photo > .caption, .photoset > .caption {
       margin-top: 24px;
     }
 
     .photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /** Photosets **/
+    .photoset img {
       display: block;
       width: 100%;
       height: auto;
@@ -212,7 +223,7 @@
       padding: 0;
     }
 
-    .photo .exif-list, .photo .attribution-tags-list, .photo > .metadata {
+    .photo .exif-list, .photo .attribution-tags, .photo > .metadata, .photoset > .attribution-tags, .photoset > .metadata {
       margin-top: 24px;
     }
 
@@ -271,8 +282,8 @@
 
     /* Responsive */
     @media only screen and (min-width : 768px) {
-      /* Grid */
 
+      /* Grid */
       .grid-m {
         float: left;
         width: 46.4%;
@@ -289,6 +300,18 @@
       .grid-s:last-child {
         float: right;
       }
+
+      /* Posts */
+      /** Photosets **/
+      .photoset img:not(:first-child) {
+        /* Same as .grid-s */
+        float: left;
+        width: 22%;
+        margin-right: 2.4%;
+        margin-left: 0;
+        margin-top: 24px;
+      }
+
     }
 
     /* Custom CSS */
@@ -388,13 +411,15 @@
 
       {block:Photoset}
       <div class="photoset count-{PhotoCount} {PhotosetLayout}">
-        {block:Photos}
-        <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-        {/block:Photos}
+        <div class="photo-wrapper">
+          {block:Photos}
+          <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          {/block:Photos}
+        </div>
+        {block:Caption}
+        <div class="caption body-text grid-m">{Caption}</div>
+        {/block:Caption}
       </div>
-      {block:Caption}
-      <div class="caption body-text grid-m">{Caption}</div>
-      {/block:Caption}
       {/block:Photoset}
 
       {block:Quote}
