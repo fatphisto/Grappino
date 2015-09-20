@@ -303,7 +303,7 @@
 
       /* Posts */
       /** Photosets **/
-      .photoset img:not(:first-child) {
+      .photoset a:not(:first-child) img {
         /* Same as .grid-s */
         float: left;
         width: 22%;
@@ -317,6 +317,20 @@
     /* Custom CSS */
     {CustomCSS}
   </style>
+
+  <!-- Scripts -->
+  <script>
+		// Inspired by https://gist.github.com/edadams/6038781
+		function openInTumblrLightbox(obj) {
+			event.preventDefault();
+			Tumblr.Lightbox.init([{
+				width: obj.dataset.width,
+				height: obj.dataset.height,
+				low_res: obj.src,
+				high_res: obj.src
+			}], 1);
+		}
+	</script>
 </head>
 
 <body data-urlencoded-name="{URLEncodedName}" class="{select:Layout}{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}{block:HideHeaderImage} no-header-image{/block:HideHeaderImage}{block:NoStretchHeaderImage} contain-header-image{/block:NoStretchHeaderImage}">
@@ -413,7 +427,9 @@
       <div class="photoset count-{PhotoCount} {PhotosetLayout}">
         <div class="photo-wrapper">
           {block:Photos}
-          <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          <a onclick="openInTumblrLightbox(this.children[0]);" href="{PhotoURL-HighRes}">
+            <img class="photoset-img" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          </a>
           {/block:Photos}
         </div>
         {block:Caption}
